@@ -1,11 +1,15 @@
 # Import cache
 .import/
 
+# Automatically generated files
+.mono/
+
+# Sensative files
+export_presets.cfg
+
 # Binaries
 bin/
 build/
 lib/
 *.translation
-export_presets.cfg
-.mono/
 .DS_Store
