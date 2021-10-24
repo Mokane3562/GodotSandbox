@@ -20,8 +20,15 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Sandbox"
+config/name="Project MAS"
+run/main_scene="res://Town.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/width=848
+window/size/height=477
+window/size/borderless=true
 
 [gdnative]
 
