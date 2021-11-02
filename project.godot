@@ -21,7 +21,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Sandbox"
-config/icon="res://icon.png"
+run/main_scene="res://levels/town/Town.tscn"
+config/icon="res://subjects/player/assets/icon.png"
 
 [gdnative]
 
@@ -33,4 +34,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://common/default_env.tres"
