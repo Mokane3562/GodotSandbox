@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
-var speed = 10
-var upper_bound
-var player_width
-var player_height
-var previous_position
+var speed := 10
+var player_width := 0
+var player_height := 0
+var upper_bound := Vector2()
+var previous_position := Vector2()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+
+func _ready() -> void:
 	upper_bound = get_parent().get_upper_bound()
 	player_height = $Sprite.texture.get_height()
 	player_width = $Sprite.texture.get_width()
@@ -17,7 +17,12 @@ func _ready():
 	previous_position = position
 
 
-func get_velocity():
+func _physics_process(delta: float) -> void:
+	var velocity = get_velocity()
+	move_and_collide(velocity)	
+
+
+func get_velocity() -> Vector2:
 	var velocity = Vector2()
 	if Input.is_action_pressed("ui_down"):
 		velocity.y = 1;
@@ -28,10 +33,3 @@ func get_velocity():
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = 1;
 	return velocity.normalized() * speed
-
-
-func _physics_process(delta):
-	var velocity = get_velocity()
-	move_and_collide(velocity)
-
-
