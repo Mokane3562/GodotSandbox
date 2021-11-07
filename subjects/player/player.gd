@@ -7,7 +7,7 @@ var upper_bound := Vector2()
 var previous_position := Vector2()
 
 
-func _ready():
+func _ready() -> void:
 	upper_bound = get_parent().get_upper_bound()
 	player_height = $Sprite.texture.get_height()
 	player_width = $Sprite.texture.get_width()
@@ -17,7 +17,7 @@ func _ready():
 	previous_position = position
 
 
-func _physics_process(delta: float):
+func _physics_process(delta: float) -> void:
 	var velocity = get_velocity()
 	move_and_collide(velocity)	
 
