@@ -4,6 +4,9 @@
 # Automatically generated files
 .mono/
 
+# Jetbrains project files
+.idea/
+
 # Sensative files
 export_presets.cfg
 
