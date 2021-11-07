@@ -24,6 +24,12 @@ config/name="Sandbox"
 run/main_scene="res://levels/town/Town.tscn"
 config/icon="res://subjects/player/assets/icon.png"
 
+[display]
+
+window/size/width=848
+window/size/height=477
+window/size/borderless=true
+
 [gdnative]
 
 singletons=[ "res://addons/godot-git-plugin/git_api.gdnlib" ]
