@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-var speed = 10
+var speed := 10
 var upper_bound
-var player_width
-var player_height
+var player_width := 0
+var player_height := 0
 var previous_position
 
 # Called when the node enters the scene tree for the first time.
