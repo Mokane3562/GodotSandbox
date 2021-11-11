@@ -26,8 +26,8 @@ config/icon="res://subjects/player/assets/icon.png"
 
 [display]
 
-window/size/width=848
-window/size/height=477
+window/size/width=720
+window/size/height=480
 window/size/borderless=true
 
 [gdnative]
