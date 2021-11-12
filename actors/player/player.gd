@@ -1,7 +1,6 @@
 class_name Player extends Actor
 
 func _ready() -> void:
-	upper_bound = get_parent().get_upper_bound()
 	previous_position = position
 	set_z_index(position.y)
 
