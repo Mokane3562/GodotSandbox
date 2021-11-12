@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-b2acd581dca01f200d9556e3d4ce3f65.stex"
+path="res://.import/SmallShadow.png-36344174d69df4da73fbc5ffae0e9c51.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://actors/player/assets/icon.png"
-dest_files=[ "res://.import/icon.png-b2acd581dca01f200d9556e3d4ce3f65.stex" ]
+source_file="res://assets/Shadows/SmallShadow.png"
+dest_files=[ "res://.import/SmallShadow.png-36344174d69df4da73fbc5ffae0e9c51.stex" ]
 
 [params]
 
