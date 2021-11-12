@@ -9,26 +9,40 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://actors/Actor.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
+}, {
+"base": "Actor",
+"class": "Player",
+"language": "GDScript",
+"path": "res://actors/player/player.gd"
 } ]
 _global_script_class_icons={
-"GitAPI": ""
+"Actor": "",
+"GitAPI": "",
+"Player": ""
 }
 
 [application]
 
 config/name="Sandbox"
 run/main_scene="res://levels/town/Town.tscn"
-config/icon="res://subjects/player/assets/icon.png"
+config/icon="res://actors/player/assets/icon.png"
 
 [display]
 
-window/size/width=848
-window/size/height=477
+window/size/width=720
+window/size/height=480
 window/size/borderless=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [gdnative]
 
