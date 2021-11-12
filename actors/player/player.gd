@@ -1,23 +1,22 @@
-class_name Player extends Actor
+class_name Player extends KinematicBody2D
+
+export var movement_speed := 256
 
 func _ready() -> void:
-	previous_position = position
 	set_z_index(position.y)
 
 
 func _physics_process(delta: float) -> void:
-	var velocity = get_velocity()
-	move_and_collide(velocity)	
+	var movement_vector = vectorize_player_input(movement_speed)
+	move_and_collide(movement_vector * delta)	
 
 
-func get_velocity() -> Vector2:
-	var velocity = Vector2()
-	if Input.is_action_pressed("ui_down"):
-		velocity.y = 1;
-	if Input.is_action_pressed("ui_up"):
-		velocity.y = -1;
-	if Input.is_action_pressed("ui_left"):
-		velocity.x = -1;
-	if Input.is_action_pressed("ui_right"):
-		velocity.x = 1;
-	return velocity.normalized() * movement_speed
+func vectorize_player_input(movement_speed: int) -> Vector2:
+	var input_vector = Vector2.ZERO
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	
+	if input_vector != Vector2.ZERO:
+		return input_vector.normalized() * movement_speed
+	else:
+		return Vector2.ZERO
