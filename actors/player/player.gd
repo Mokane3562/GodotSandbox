@@ -2,12 +2,8 @@ class_name Player extends Actor
 
 func _ready() -> void:
 	upper_bound = get_parent().get_upper_bound()
-	actor_height = $Sprite.texture.get_height()
-	actor_width = $Sprite.texture.get_width()
-	var rectangle = $CollisionShape2D.shape
-	rectangle.extents.x = actor_width/2
-	rectangle.extents.y = actor_height/2
 	previous_position = position
+	set_z_index(position.y)
 
 
 func _physics_process(delta: float) -> void:
