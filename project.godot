@@ -33,7 +33,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Sandbox"
-run/main_scene="res://levels/town/Town.tscn"
+run/main_scene="res://levels/Main.tscn"
 config/icon="res://actors/player/assets/icon.png"
 
 [display]
