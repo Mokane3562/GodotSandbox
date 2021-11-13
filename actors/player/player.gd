@@ -2,13 +2,10 @@ class_name Player extends KinematicBody2D
 
 export var movement_speed := 256
 
-func _ready() -> void:
-	set_z_index(position.y)
-
 
 func _physics_process(delta: float) -> void:
 	var movement_vector = vectorize_player_input(movement_speed)
-	move_and_collide(movement_vector * delta)	
+	move_and_slide(movement_vector)	
 
 
 func vectorize_player_input(movement_speed: int) -> Vector2:

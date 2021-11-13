@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://actors/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/building/Building.tscn" type="PackedScene" id=2]
+[ext_resource path="res://objects/bush/Bush.tscn" type="PackedScene" id=3]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends ColorRect
@@ -21,95 +22,70 @@ func get_upper_bound() -> Vector2:
 	return vector
 "
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 495 )
+[node name="Town" type="YSort"]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 20, 495 )
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 89.6192, 64.371 )
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 880, 15 )
+[node name="Bush1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 399.31, 219.064 )
+scale = Vector2( 3, 3 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 880, 15 )
+[node name="Bush2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 447.364, 751.666 )
+scale = Vector2( 3, 3 )
 
-[node name="Town" type="Node"]
+[node name="Bush3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 281.718, 609.321 )
+scale = Vector2( 3, 3 )
 
-[node name="Sea" type="ColorRect" parent="."]
-margin_right = 1760.0
-margin_bottom = 990.0
-color = Color( 0.0156863, 0.0588235, 0.415686, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Building1" parent="." instance=ExtResource( 2 )]
+position = Vector2( 451.176, 401.787 )
+rotation = 1.57079
 
-[node name="Land" type="ColorRect" parent="Sea"]
-margin_left = 40.1122
-margin_top = 30.0
-margin_right = 1720.11
-margin_bottom = 960.0
-color = Color( 0.462745, 0.921569, 0.631373, 1 )
-script = SubResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Building2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 561.968, 184.208 )
 
-[node name="Town Square" type="ColorRect" parent="Sea/Land"]
-margin_left = 875.0
-margin_top = 387.0
-margin_right = 1219.0
-margin_bottom = 758.0
-rect_rotation = 90.0
-color = Color( 0.960784, 0.847059, 0.603922, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Firepit" type="ColorRect" parent="Sea/Land"]
-margin_left = 726.643
-margin_top = 519.474
-margin_right = 800.643
-margin_bottom = 590.474
+[node name="Firepit" type="ColorRect" parent="."]
+margin_left = 766.755
+margin_top = 549.474
+margin_right = 840.755
+margin_bottom = 620.474
 rect_rotation = 90.0
 color = Color( 1, 0.407843, 0.0509804, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" parent="Sea/Land" instance=ExtResource( 1 )]
-position = Vector2( 80.5982, 54.5981 )
+[node name="Town Square" type="ColorRect" parent="."]
+margin_left = 915.112
+margin_top = 417.0
+margin_right = 1259.11
+margin_bottom = 788.0
+rect_rotation = 90.0
+color = Color( 0.960784, 0.847059, 0.603922, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Building 1" parent="Sea/Land" instance=ExtResource( 2 )]
-position = Vector2( 521, 198 )
+[node name="Land" type="ColorRect" parent="."]
+margin_left = 40.1122
+margin_top = 30.0
+margin_right = 1720.11
+margin_bottom = 960.0
+rect_pivot_offset = Vector2( 865.192, 290.204 )
+color = Color( 0.462745, 0.921569, 0.631373, 1 )
+script = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
 
-[node name="Building 2" parent="Sea/Land" instance=ExtResource( 2 )]
-position = Vector2( 457, 392 )
-rotation = 1.5708
-
-[node name="Building 3" parent="Sea/Land" instance=ExtResource( 2 )]
-position = Vector2( 1061, 393 )
-rotation = 1.5708
-
-[node name="LeftMargin" type="StaticBody2D" parent="Sea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sea/LeftMargin"]
-position = Vector2( 20, 495 )
-shape = SubResource( 2 )
-
-[node name="RightMargin" type="StaticBody2D" parent="Sea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sea/RightMargin"]
-position = Vector2( 1740, 495 )
-shape = SubResource( 3 )
-
-[node name="TopMargin" type="StaticBody2D" parent="Sea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sea/TopMargin"]
-position = Vector2( 880, 15 )
-shape = SubResource( 4 )
-
-[node name="BottomMargin" type="StaticBody2D" parent="Sea"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sea/BottomMargin"]
-position = Vector2( 880, 975 )
-shape = SubResource( 5 )
+[node name="Sea" type="ColorRect" parent="."]
+margin_right = 1760.0
+margin_bottom = 990.0
+color = Color( 0.0156863, 0.0588235, 0.415686, 1 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
