@@ -6,13 +6,13 @@ onready var animation_tree := $AnimationTree
 onready var animation_state = animation_tree.get("parameters/playback")
 
 func _physics_process(delta: float) -> void:
-	var movement_vector = vectorize_player_input(movement_speed)
+	var movement_vector := vectorize_player_input(movement_speed)
 	animate_player_movement(movement_vector)
 	move_and_slide(movement_vector)	
 
 
 func vectorize_player_input(movement_speed: int) -> Vector2:
-	var input_vector = Vector2.ZERO
+	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
