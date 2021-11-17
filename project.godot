@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
-"path": "res://actors/player/player.gd"
+"path": "res://actors/player/Player.gd"
 } ]
 _global_script_class_icons={
 "GitAPI": "",
@@ -29,6 +29,10 @@ _global_script_class_icons={
 config/name="Sandbox"
 run/main_scene="res://levels/Main.tscn"
 config/icon="res://actors/player/assets/icon.png"
+
+[autoload]
+
+Settings="*res://globals/Settings.gd"
 
 [display]
 
