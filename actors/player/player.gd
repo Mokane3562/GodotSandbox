@@ -7,18 +7,18 @@ onready var animation_state = animation_tree.get("parameters/playback")
 
 
 func _physics_process(delta: float) -> void:
-	var movement_vector := vectorize_player_input(movement_speed)
-	animate_player_movement(movement_vector)  
+	var movement_vector := vectorize_player_input() * movement_speed
+	animate_player_movement(movement_vector)
 	move_and_slide(movement_vector)
 
 
-func vectorize_player_input(movement_speed:= self.movement_speed) -> Vector2:
+func vectorize_player_input() -> Vector2:
 	var input_vector := Vector2.ZERO
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
 	if input_vector != Vector2.ZERO:
-		return input_vector.normalized() * movement_speed
+		return input_vector.normalized()
 	else:
 		return Vector2.ZERO
 
