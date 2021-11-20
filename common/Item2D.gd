@@ -7,7 +7,7 @@ var item_name := ""
 var item_description := ""
 var item_icon := ImageTexture.new()
 var item_type: int = ItemType.CONSUMABLE
-var item_weight = 0.0
+var item_weight := 0.0
 var _use: FuncRef
 
 func use() -> void:

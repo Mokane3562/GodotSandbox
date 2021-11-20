@@ -39,6 +39,7 @@ config/icon="res://actors/player/assets/icon.png"
 [autoload]
 
 Settings="*res://globals/Settings.gd"
+InputSystem="*res://globals/InputSystem.gd"
 
 [display]
 
