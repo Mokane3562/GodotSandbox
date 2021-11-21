@@ -9,32 +9,51 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Actor2D",
+"language": "GDScript",
+"path": "res://common/actors/Actor2D.gd"
+}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "KinematicBody2D",
+"base": "Node2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://common/items/Item.gd"
+}, {
+"base": "Reference",
 "class": "Player",
 "language": "GDScript",
-"path": "res://actors/player/player.gd"
+"path": "res://common/actors/player/Player.gd"
 } ]
 _global_script_class_icons={
+"Actor2D": "",
 "GitAPI": "",
+"Item": "",
 "Player": ""
 }
 
 [application]
 
 config/name="Sandbox"
-run/main_scene="res://levels/Main.tscn"
-config/icon="res://actors/player/assets/icon.png"
+run/main_scene="res://Main.tscn"
+config/icon="res://common/actors/player/assets/icon.png"
+
+[autoload]
+
+Settings="*res://globals/Settings.gd"
+InputSystem="*res://globals/InputSystem.gd"
 
 [display]
 
-window/size/width=720
+window/size/width=640
 window/size/height=480
 window/size/borderless=true
+window/size/test_width=1280
+window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 

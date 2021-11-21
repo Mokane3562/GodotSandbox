@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://objects/grass/assets/Grass.png" type="Texture" id=1]
+[ext_resource path="res://common/objects/grass/assets/Grass.png" type="Texture" id=1]
 
 [node name="Grass" type="Node2D"]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/GrassEffect.png-0236764143ac68c5110f0ae07fae8ab4.stex"
+path="res://.import/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp-8dd893461092b74a43ec7cbdbfe6259b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://objects/grass/assets/GrassEffect.png"
-dest_files=[ "res://.import/GrassEffect.png-0236764143ac68c5110f0ae07fae8ab4.stex" ]
+source_file="res://ui/main_menu/assets/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp"
+dest_files=[ "res://.import/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp-8dd893461092b74a43ec7cbdbfe6259b.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false
