@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Item",
 "language": "GDScript",
-"path": "res://common/items/Item.gd"
+"path": "res://WIP/items/Item.gd"
 } ]
 _global_script_class_icons={
 "GitAPI": "",

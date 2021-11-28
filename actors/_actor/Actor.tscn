@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://actors/_actor/assets/icon.png" type="Texture" id=1]
+[ext_resource path="res://actors/_actor/_assets/icon.png" type="Texture" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 14.7925
