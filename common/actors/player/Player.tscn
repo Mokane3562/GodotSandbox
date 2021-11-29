@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://common/actors/_actor/Actor.tscn" type="PackedScene" id=1]
+[ext_resource path="res://common/actors/player/_assets/player_sprite/Player.png" type="Texture" id=2]
+[ext_resource path="res://common/actors/player/_scripts/Player.gd" type="Script" id=3]
+[ext_resource path="res://common/actors/player/_scripts/AnimationTree.gd" type="Script" id=4]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=1]
+
+[node name="Player" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 3, -35 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+hframes = 60
+
+[node name="AnimationTree" parent="." index="3"]
+parameters/playback = SubResource( 1 )
+script = ExtResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="." index="4"]
+position = Vector2( 0, -32 )
+current = true
+smoothing_enabled = true
+editor_draw_drag_margin = true

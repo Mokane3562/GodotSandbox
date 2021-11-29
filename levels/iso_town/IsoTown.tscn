@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=1]
-[ext_resource path="res://actors/player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://terrain/_assets/grass/Grass1.png" type="Texture" id=3]
-[ext_resource path="res://objects/bush/Bush.tscn" type="PackedScene" id=4]
-[ext_resource path="res://actors/_actor/Actor.tscn" type="PackedScene" id=5]
+[ext_resource path="res://common/terrain/Terrain.tscn" type="PackedScene" id=1]
+[ext_resource path="res://common/actors/player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://common/terrain/_assets/grass/Grass1.png" type="Texture" id=3]
+[ext_resource path="res://common/objects/bush/Bush.tscn" type="PackedScene" id=4]
+[ext_resource path="res://common/actors/_actor/Actor.tscn" type="PackedScene" id=5]
 
 [node name="IsoTown" type="Node2D"]
 
