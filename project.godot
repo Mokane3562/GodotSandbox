@@ -9,38 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "Actor2D",
-"language": "GDScript",
-"path": "res://common/actors/Actor2D.gd"
-}, {
 "base": "",
 "class": "GitAPI",
 "language": "NativeScript",
 "path": "res://addons/godot-git-plugin/git_api.gdns"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "Item",
 "language": "GDScript",
-"path": "res://common/items/Item.gd"
-}, {
-"base": "Reference",
-"class": "Player",
-"language": "GDScript",
-"path": "res://common/actors/player/Player.gd"
+"path": "res://WIP/items/Item.gd"
 } ]
 _global_script_class_icons={
-"Actor2D": "",
 "GitAPI": "",
-"Item": "",
-"Player": ""
+"Item": ""
 }
 
 [application]
 
 config/name="Sandbox"
 run/main_scene="res://Main.tscn"
-config/icon="res://common/actors/player/assets/icon.png"
 
 [autoload]
 
