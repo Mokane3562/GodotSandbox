@@ -1,13 +1,13 @@
 [gd_scene load_steps=64 format=2]
 
-[ext_resource path="res://common/actors/player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://common/objects/building/Building.tscn" type="PackedScene" id=2]
-[ext_resource path="res://common/objects/bush/Bush.tscn" type="PackedScene" id=3]
+[ext_resource path="res://commons/actors/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://commons/objects/building/Building.tscn" type="PackedScene" id=2]
+[ext_resource path="res://commons/objects/bush/Bush.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/town/_assets/GrassBackground.png" type="Texture" id=4]
 [ext_resource path="res://levels/town/_assets/DirtTileset.png" type="Texture" id=5]
 [ext_resource path="res://levels/town/_assets/CliffTileset.png" type="Texture" id=6]
-[ext_resource path="res://common/objects/grass/Grass.tscn" type="PackedScene" id=7]
-[ext_resource path="res://common/actors/_actor/Actor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://commons/objects/grass/Grass.tscn" type="PackedScene" id=7]
+[ext_resource path="res://commons/actors/_actor/Actor.tscn" type="PackedScene" id=8]
 
 [sub_resource type="TileSet" id=1]
 0/name = "GrassBackground.png 0"
