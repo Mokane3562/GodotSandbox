@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://terrain/Terrain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://entities/objects/iso_cubes/IsoCube.tscn" type="PackedScene" id=3]
 [ext_resource path="res://entities/objects/bush/Bush.tscn" type="PackedScene" id=4]
 [ext_resource path="res://entities/characters/Character.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/characters/Austin/Austin.tscn" type="PackedScene" id=6]
 
 [node name="IsoTown" type="Node2D"]
 
@@ -21,6 +23,9 @@ tile_data = PoolIntArray( -65539, 7, 0, -65538, 7, 0, -65537, 7, 0, -131072, 7, 
 
 [node name="Player" parent="YSort/Actors" instance=ExtResource( 2 )]
 position = Vector2( -244, 280 )
+
+[node name="Austin" parent="YSort/Actors" instance=ExtResource( 6 )]
+position = Vector2( 91.0378, 790.182 )
 
 [node name="Actor1" parent="YSort/Actors" instance=ExtResource( 5 )]
 position = Vector2( 79, 911 )
@@ -45,7 +50,23 @@ position = Vector2( -449, 409 )
 [node name="Bush4" parent="YSort/Bushes" instance=ExtResource( 4 )]
 position = Vector2( -630, 660 )
 
+[node name="IsoCube" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 103.404, 743.729 )
+
+[node name="IsoCube2" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 168.216, 775.838 )
+
+[node name="IsoCube3" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( 234.217, 807.352 )
+
+[node name="IsoCube4" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -130.87, 749.081 )
+
+[node name="IsoCube5" parent="YSort" instance=ExtResource( 3 )]
+position = Vector2( -195.681, 781.189 )
+
 [node name="Colliders" type="Node2D" parent="."]
+visible = false
 
 [node name="Pond" type="StaticBody2D" parent="Colliders"]
 
