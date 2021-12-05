@@ -782,7 +782,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Godot"
+config/name="Sandbox"
 run/main_scene="res://main/Main.tscn"
 
 [autoload]
@@ -834,6 +834,10 @@ texture={
 [inventory_editor]
 
 items_split_offset=379
+
+[mono]
+
+debugger_agent/wait_for_debugger=true
 
 [physics]
 
