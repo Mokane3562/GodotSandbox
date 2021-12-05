@@ -788,7 +788,6 @@ run/main_scene="res://main/Main.tscn"
 [autoload]
 
 Settings="*res://globals/Settings.cs"
-InputSystem="*res://globals/InputSystem.gd"
 
 [display]
 

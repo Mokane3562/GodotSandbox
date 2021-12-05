@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://ui/main_menu/_assets/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp" type="Texture" id=1]
-[ext_resource path="res://ui/main_menu/_assets/clipart987874.png" type="Texture" id=2]
+[ext_resource path="res://ui/main_menu/_textures/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp" type="Texture" id=1]
+[ext_resource path="res://ui/main_menu/_textures/clipart987874.png" type="Texture" id=2]
 [ext_resource path="res://ui/main_menu/_scripts/ExitButton.cs" type="Script" id=3]
 [ext_resource path="res://ui/main_menu/_scripts/NewGameButton.cs" type="Script" id=5]
 
