@@ -42,7 +42,7 @@ polygon = PoolVector2Array( -455, 91, -383, 136, -1610, 751, 0, 1557, 1537, 789,
 [node name="Actors" type="YSort" parent="YSort"]
 
 [node name="Player" parent="YSort/Actors" instance=ExtResource( 2 )]
-position = Vector2( -244, 280 )
+position = Vector2( -30, 763 )
 
 [node name="Austin" parent="YSort/Actors" instance=ExtResource( 6 )]
 position = Vector2( 91.0378, 790.182 )
