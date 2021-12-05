@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp-fb9ec2323a3c5707edf423f41503ed66.stex"
+path="res://.import/clipart987874.png-74b786c63e3fa9321c40a1ab5f59ca3d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/main_menu/_assets/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp"
-dest_files=[ "res://.import/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp-fb9ec2323a3c5707edf423f41503ed66.stex" ]
+source_file="res://ui/main_menu/_textures/clipart987874.png"
+dest_files=[ "res://.import/clipart987874.png-74b786c63e3fa9321c40a1ab5f59ca3d.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

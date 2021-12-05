@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DirtTileset.png-e50790ea4a30a671fd5753d1a5321860.stex"
+path="res://.import/CliffTileset.png-47ee624b6c933fd22f0d622b3ce5d68d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://levels/town/_assets/DirtTileset.png"
-dest_files=[ "res://.import/DirtTileset.png-e50790ea4a30a671fd5753d1a5321860.stex" ]
+source_file="res://levels/town/_textures/CliffTileset.png"
+dest_files=[ "res://.import/CliffTileset.png-47ee624b6c933fd22f0d622b3ce5d68d.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false
