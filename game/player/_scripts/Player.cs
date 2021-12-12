@@ -22,10 +22,12 @@ public class Player : KinematicBody2D
 
 	private static Vector2 GetPlayerInputVector()
 	{
-		Vector2 inputVector = Vector2.Zero;
+		var inputVector = Vector2.Zero;
 		inputVector.x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
 		inputVector.y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
-		return inputVector.Normalized();
+		inputVector = inputVector.Normalized();
+		inputVector.y /= 2;
+		return inputVector;
 	}
 
 	private void AnimatePlayerMovement(Vector2 movementVector)
