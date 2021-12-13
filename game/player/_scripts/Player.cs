@@ -15,17 +15,19 @@ public class Player : KinematicBody2D
 
 	public override void _PhysicsProcess(float delta)
 	{
-		var movementVector = GetPlayerInputVector() * _movementSpeed;
+		var movementVector = GetPlayerInputVector(true) * _movementSpeed;
 		AnimatePlayerMovement(movementVector);
 		MoveAndSlide(movementVector);
 	}
 
-	private static Vector2 GetPlayerInputVector()
+	private static Vector2 GetPlayerInputVector(bool isometric=false)
 	{
-		Vector2 inputVector = Vector2.Zero;
-		inputVector.x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-		inputVector.y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
-		return inputVector.Normalized();
+		var inputVector = Vector2.Zero;
+		inputVector.x = Input.GetActionStrength("move_right") - Input.GetActionStrength("move_left");
+		inputVector.y = Input.GetActionStrength("move_down") - Input.GetActionStrength("move_up");
+		inputVector = inputVector.Normalized();
+		if (isometric) inputVector.y /= 2;
+		return inputVector;
 	}
 
 	private void AnimatePlayerMovement(Vector2 movementVector)
