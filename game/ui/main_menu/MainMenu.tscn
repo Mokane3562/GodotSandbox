@@ -1,15 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ui/main_menu/_textures/beautiful-village-farmlands-trees-meadows-260nw-718204132.webp" type="Texture" id=1]
 [ext_resource path="res://ui/main_menu/_textures/clipart987874.png" type="Texture" id=2]
-[ext_resource path="res://ui/main_menu/_scripts/ExitButton.cs" type="Script" id=3]
-[ext_resource path="res://ui/main_menu/_scripts/CreditsButton.cs" type="Script" id=4]
-[ext_resource path="res://ui/main_menu/_scripts/PlayGameButton.cs" type="Script" id=5]
-[ext_resource path="res://ui/main_menu/_scripts/LoadGameButton.cs" type="Script" id=6]
+[ext_resource path="res://ui/main_menu/_scripts/MainMenu.cs" type="Script" id=3]
 
 [node name="Main Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,11 +74,9 @@ margin_right = 84.0
 margin_bottom = 20.0
 shortcut_in_tooltip = false
 text = "Play Game"
-script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_sceneToLoad = "res://levels/town/Town.tscn"
 
 [node name="LoadGameButton" type="Button" parent="Buttons"]
 margin_top = 24.0
@@ -88,7 +84,6 @@ margin_right = 84.0
 margin_bottom = 44.0
 rect_pivot_offset = Vector2( 37, 12 )
 text = "Load Game"
-script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -99,7 +94,6 @@ margin_right = 84.0
 margin_bottom = 68.0
 rect_pivot_offset = Vector2( 37, 12 )
 text = "Credits"
-script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -110,7 +104,6 @@ margin_right = 84.0
 margin_bottom = 92.0
 rect_pivot_offset = Vector2( 37, 12 )
 text = "Exit"
-script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -125,3 +118,8 @@ text = "Sandbox"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[connection signal="pressed" from="Buttons/PlayGameButton" to="." method="_on_PlayGameButton_pressed"]
+[connection signal="pressed" from="Buttons/LoadGameButton" to="." method="_on_LoadGameButton_pressed"]
+[connection signal="pressed" from="Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]
