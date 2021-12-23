@@ -783,7 +783,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Sandbox"
-run/main_scene="res://ui/main_menu/MainMenu.tscn"
+run/main_scene="res://Game.tscn"
 
 [autoload]
 
