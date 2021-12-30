@@ -11,14 +11,7 @@ public class Pause : Control
 			TogglePaused();
 		}
 	}
-	
-	private void TogglePaused()
-	{
-		var newPauseState = !GetTree().Paused;
-		GetTree().Paused = newPauseState;
-		Visible = newPauseState;
-	}
-	
+
 	private void _on_ResumeButton_pressed()
 	{
 		TogglePaused();
@@ -27,5 +20,12 @@ public class Pause : Control
 	private void _on_QuitButton_pressed()
 	{
 		GetTree().Quit(0);
+	}
+	
+	private void TogglePaused()
+	{
+		var newPauseState = !GetTree().Paused;
+		GetTree().Paused = newPauseState;
+		Visible = newPauseState;
 	}
 }
