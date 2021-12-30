@@ -1,6 +1,6 @@
 using Godot;
 
-public class Events : Node
+public class Signals : Node
 {
 	//global signals
 }

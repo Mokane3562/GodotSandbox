@@ -787,7 +787,7 @@ run/main_scene="res://Game.tscn"
 
 [autoload]
 
-Events="*res://globals/Events.cs"
+Signals="*res://globals/Signals.cs"
 
 [display]
 

@@ -3,11 +3,7 @@ using System;
 
 public class MainMenu : Control
 {
-	public override void _Ready()
-	{
-		GD.Print("Hello World!");
-	}
-	
+
 	private void _on_PlayGameButton_pressed()
 	{
 		GD.Print(new NotImplementedException(nameof(_on_PlayGameButton_pressed)));
