@@ -90,7 +90,8 @@ func _process(_delta):
 # is checking if the user has press the editor stop scene 
 func _check_test_run_stopped_manually():
 	if _is_test_running_but_stop_pressed():
-		push_warning("Test Runner scene was stopped manually, force stopping the current test run!")
+		if GdUnitSettings.is_verbose_assert_warnings():
+			push_warning("Test Runner scene was stopped manually, force stopping the current test run!")
 		_gdUnit_stop(_client_id)
 
 func _is_test_running_but_stop_pressed():
@@ -192,7 +193,7 @@ func extend_script_editor_popup(tab_container :Control) -> void:
 
 func _on_script_editor_context_menu_show(context_menu :PopupMenu):
 	var current_script := _editor_interface.get_script_editor().get_current_script()
-	if GdObjects.is_testsuite(current_script):
+	if GdObjects.is_test_suite(current_script):
 		context_menu.add_separator()
 		# save menu entry index
 		var current_index := context_menu.get_item_count()
@@ -216,15 +217,11 @@ func _on_fscript_editor_context_menu_pressed(id :int, text_edit :TextEdit):
 	if current_script == null:
 		prints("no script selected")
 		return
-
-	var parser := GdScriptParser.new()
 	var cursor_line := text_edit.cursor_get_line()
 	var current_line := text_edit.get_line(cursor_line)
 	# create new test case?
 	if id == MENU_ID_CREATE_TEST:
-		var func_name := parser.parse_func_name(current_line)
-		if not func_name.empty():
-			add_test_to_test_suite(current_script, func_name)
+		add_test_to_test_suite(current_script, cursor_line, current_line)
 		return
 
 	# run test case?
@@ -234,7 +231,7 @@ func _on_fscript_editor_context_menu_pressed(id :int, text_edit :TextEdit):
 	if result:
 		var func_name := result.get_string(2).strip_edges()
 		if func_name.begins_with("test_"):
-			run_test_case(current_script.resource_path, func_name, debug)
+			run_test_case(current_script.resource_path, func_name, -1, debug)
 			return
 
 	# otherwise run the full test suite
@@ -253,11 +250,11 @@ func run_test_suites(test_suite_paths :Array, debug :bool, rerun :bool=false) ->
 			return
 	_gdUnit_run(debug)
 
-func run_test_case(test_suite_resource_path :String, test_case :String, debug :bool, rerun :bool=false) -> void:
+func run_test_case(test_suite_resource_path :String, test_case :String, test_param_index :int, debug :bool, rerun :bool=false) -> void:
 	# create new runner config for fresh run otherwise use saved one
 	if not rerun:
 		var result := _runner_config.clear()\
-			.add_test_case(test_suite_resource_path, test_case)\
+			.add_test_case(test_suite_resource_path, test_case, test_param_index)\
 			.save()
 		if result.is_error():
 			push_error(result.error_message())
@@ -281,7 +278,7 @@ func _gdUnit_run(debug :bool) -> void:
 	# before start we have to save all changed test suites
 	save_test_suites_before_run()
 	# wait until all changes are saved
-	yield(get_tree(), "idle_frame")
+	#yield(get_tree(), "idle_frame")
 
 	emit_signal("gdunit_runner_start")
 	if debug:
@@ -290,7 +287,11 @@ func _gdUnit_run(debug :bool) -> void:
 		return
 
 	var arguments := Array()
+	if OS.is_stdout_verbose():
+		arguments.append("--verbose")
 	arguments.append("--no-window")
+	arguments.append("--path")
+	arguments.append(ProjectSettings.globalize_path("res://"))
 	#arguments.append("-d")
 	#arguments.append("-s")
 	arguments.append("res://addons/gdUnit3/src/core/GdUnitRunner.tscn")
@@ -300,7 +301,6 @@ func _gdUnit_run(debug :bool) -> void:
 	#prints("execute ", OS.get_executable_path(), arguments)
 	_current_runner_process_id = OS.execute(OS.get_executable_path(), arguments, false, output, false);
 	_is_running = true
-
 
 func _gdUnit_stop(client_id :int) -> void:
 	# don't stop if is already stopped
@@ -323,21 +323,6 @@ func save_test_suites_before_run() -> void:
 		prints("Save %s" % open_script.resource_path)
 	# TODO find a way to detect only modified files to save
 	script_editor._menu_option(EDITOR_ACTIONS.FILE_SAVE_ALL)
-
-func save_and_close_script(script_path :String):
-	var script_editor :ScriptEditor = _editor_interface.get_script_editor()
-	# is already opened?
-	var open_file_index = 0
-	for open_script in script_editor.get_open_scripts():
-		if open_script.resource_path == script_path:
-			# select the script in the editor
-			script_editor._script_selected(open_file_index)
-			# needs to be saved first to store current editor changes
-			script_editor._menu_option(EDITOR_ACTIONS.FILE_SAVE)
-			# finally needs to be closed to can modify and reload
-			script_editor._menu_option(EDITOR_ACTIONS.FILE_CLOSE)
-			return
-		open_file_index += 1
 
 func open_script(script_path :String, line_number :int):
 	var file_system := _editor_interface.get_resource_filesystem()
@@ -363,20 +348,16 @@ func open_script(script_path :String, line_number :int):
 		_editor_interface.edit_resource(script)
 		script_editor.goto_line(line_number)
 
-func add_test_to_test_suite(source_script :Script, func_name :String) -> void:
-	var source_script_path := source_script.resource_path
-	var test_suite_path := _TestSuiteScanner.resolve_test_suite_path(source_script_path, GdUnitSettings.test_root_folder())
-	
-	save_and_close_script(test_suite_path)
-	var result := _TestSuiteScanner.create_test_case(test_suite_path, func_name, source_script_path)
+func add_test_to_test_suite(source_script :Script, current_line_number :int, current_line :String) -> void:
+	var result := GdUnitTestSuiteBuilder.new().create(source_script, current_line_number)
 	if result.is_error():
 		# show error dialog
-		prints("add_test_to_test_suite", result.error_message())
+		push_error("Failed to create test case: %s" % result.error_message())
 		return
 	var info := result.value() as Dictionary
 	var suite_path := info.get("path") as String
 	var line_number := info.get("line") as int
-	open_script(test_suite_path, line_number)
+	open_script(suite_path, line_number)
 
 ################################################################################
 # Event signal receiver
@@ -397,8 +378,8 @@ func _on_ToolBar_stop_pressed():
 func _on_MainPanel_run_testsuite(test_suite_paths :Array, debug :bool):
 	run_test_suites(test_suite_paths, debug)
 
-func _on_MainPanel_run_testcase(resource_path :String, test_case :String, debug :bool):
-	run_test_case(resource_path, test_case, debug)
+func _on_MainPanel_run_testcase(resource_path :String, test_case :String, test_param_index :int, debug :bool):
+	run_test_case(resource_path, test_case, test_param_index, debug)
 
 ##########################################################################
 # Network stuff

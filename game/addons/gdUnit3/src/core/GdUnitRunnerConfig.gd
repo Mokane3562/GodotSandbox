@@ -34,6 +34,7 @@ func server_port() -> int:
 
 func self_test() -> GdUnitRunnerConfig:
 	add_test_suite("res://addons/gdUnit3/test/")
+	add_test_suite("res://addons/gdUnit3/mono/test/")
 	return self
 
 func add_test_suite(resource_path :String) -> GdUnitRunnerConfig:
@@ -46,10 +47,13 @@ func add_test_suites(resource_paths :PoolStringArray) -> GdUnitRunnerConfig:
 		add_test_suite(resource_path)
 	return self
 
-func add_test_case(resource_path :String, test_name :String) -> GdUnitRunnerConfig:
+func add_test_case(resource_path :String, test_name :String, test_param_index :int = -1) -> GdUnitRunnerConfig:
 	var to_execute := to_execute()
 	var test_cases :Array = to_execute.get(resource_path, Array())
-	test_cases.append(test_name)
+	if test_param_index != -1:
+		test_cases.append("%s:%d" % [test_name, test_param_index])
+	else:
+		test_cases.append(test_name)
 	to_execute[resource_path] = test_cases
 	return self
 
@@ -91,7 +95,7 @@ func save(path :String = CONFIG_FILE) -> Result:
 	if err != OK:
 		return Result.error("Can't write test runner configuration '%s'! %s" % [path, GdUnitTools.error_as_string(err)])
 	_config[VERSION] = CONFIG_VERSION
-	file.store_var(_config)
+	file.store_string(to_json(_config))
 	file.close()
 	return Result.success(path)
 
@@ -103,9 +107,16 @@ func load(path :String = CONFIG_FILE) -> Result:
 	var err := file.open(path, File.READ)
 	if err != OK:
 		return Result.error("Can't load test runner configuration '%s'! ERROR: %s." % [path, GdUnitTools.error_as_string(err)])
-
-	_config = file.get_var() as Dictionary
-	# if old file format than convert into new format
+	var content := file.get_as_text()
+	if not content.empty() and content[0] == '{':
+		# Parse as json
+		var result := JSON.parse(content)
+		if result.error != OK:
+			return Result.error("The runner configuration '%s' is invalid! The format is changed please delete it manually and start a new test run." % path)
+		_config = result.result as Dictionary
+	else:
+		# fallback to old format
+		_config = file.get_var() as Dictionary
 	if not _config.has(VERSION):
 		return Result.error("The runner configuration '%s' is invalid! The format is changed please delete it manually and start a new test run." % path)
 	file.close()

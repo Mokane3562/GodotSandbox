@@ -15,13 +15,21 @@ const TEST_TIMEOUT = GROUP_TEST + "/test_timeout_seconds"
 const TEST_ROOT_FOLDER = GROUP_TEST + "/test_root_folder"
 const TEST_SITE_NAMING_CONVENTION = GROUP_TEST + "/test_suite_naming_convention"
 
+# UI Setiings
+const GROUP_UI = COMMON_SETTINGS + "/ui"
+const INSPECTOR_NODE_COLLAPSE = GROUP_UI + "/inspector_node_collapse"
+
+
 # Report Setiings
 const REPORT_SETTINGS = MAIN_CATEGORY + "/report"
-const REPORT_ERROR_NOTIFICATIONS = REPORT_SETTINGS + "/error_notification"
+const GROUP_GODOT = REPORT_SETTINGS + "/godot"
+const REPORT_PUSH_ERRORS = GROUP_GODOT + "/push_error"
+const REPORT_SCRIPT_ERRORS = GROUP_GODOT + "/script_error"
 const REPORT_ORPHANS  = REPORT_SETTINGS + "/verbose_orphans"
 const GROUP_ASSERT = REPORT_SETTINGS + "/assert"
 const REPORT_ASSERT_WARNINGS = GROUP_ASSERT + "/verbose_warnings"
 const REPORT_ASSERT_ERRORS   = GROUP_ASSERT + "/verbose_errors"
+const REPORT_ASSERT_STRICT_NUMBER_TYPE_COMPARE = GROUP_ASSERT + "/strict_number_type_compare"
 
 # Godot stdout/logging settings
 const CATEGORY_LOGGING := "logging/file_logging/"
@@ -49,18 +57,19 @@ enum NAMING_CONVENTIONS {
 	PASCAL_CASE,
 }
 
-
 static func setup():
-	prints("setup")
 	create_property_if_need(UPDATE_NOTIFICATION_ENABLED, true, "Enables/Disables the update notification on startup.")
 	create_property_if_need(SERVER_TIMEOUT, DEFAULT_SERVER_TIMEOUT, "Sets the server connection timeout in minutes.")
 	create_property_if_need(TEST_TIMEOUT, DEFAULT_TEST_TIMEOUT, "Sets the test case runtime timeout in seconds.")
 	create_property_if_need(TEST_ROOT_FOLDER, DEFAULT_TEST_ROOT_FOLDER, "Sets the root folder where test-suites located/generated.")
 	create_property_if_need(TEST_SITE_NAMING_CONVENTION, NAMING_CONVENTIONS.AUTO_DETECT, "Sets test-suite genrate script name convention.", NAMING_CONVENTIONS.keys())
-	create_property_if_need(REPORT_ERROR_NOTIFICATIONS, false, "Current not supported!")
+	create_property_if_need(REPORT_PUSH_ERRORS, false, "Enables/Disables report of push_error() as failure!")
+	create_property_if_need(REPORT_SCRIPT_ERRORS, true, "Enables/Disables report of script errors as failure!")
 	create_property_if_need(REPORT_ORPHANS, true, "Enables/Disables orphan reporting.")
 	create_property_if_need(REPORT_ASSERT_ERRORS, true, "Enables/Disables error reporting on asserts.")
 	create_property_if_need(REPORT_ASSERT_WARNINGS, true, "Enables/Disables warning reporting on asserts")
+	create_property_if_need(REPORT_ASSERT_STRICT_NUMBER_TYPE_COMPARE, true, "Enabled/disabled number values will be compared strictly by type. (real vs int)")
+	create_property_if_need(INSPECTOR_NODE_COLLAPSE, true, "Enables/disables that the testsuite node is closed after a successful test run.")
 	create_property_if_need(TEMPLATE_TS_GD, GdUnitTestSuiteDefaultTemplate.DEFAULT_TEMP_TS_GD, "Defines the test suite template")
 
 static func create_property_if_need(name :String, default, help :="", value_set := PoolStringArray()) -> void:
@@ -92,14 +101,6 @@ static func set_update_notification(enable :bool) -> void:
 	ProjectSettings.set_setting(UPDATE_NOTIFICATION_ENABLED, enable)
 	ProjectSettings.save()
 
-static func is_report_push_errors() -> bool:
-	if ProjectSettings.has_setting(REPORT_ERROR_NOTIFICATIONS):
-		return ProjectSettings.get_setting(REPORT_ERROR_NOTIFICATIONS)
-	return false
-
-static func is_log_enabled() -> bool:
-	return ProjectSettings.get_setting(STDOUT_ENABLE_TO_FILE)
-
 static func get_log_path() -> String:
 	return ProjectSettings.get_setting(STDOUT_WITE_TO_FILE)
 
@@ -128,6 +129,21 @@ static func is_verbose_assert_errors() -> bool:
 
 static func is_verbose_orphans() -> bool:
 	return get_setting(REPORT_ORPHANS, true)
+
+static func is_strict_number_type_compare() -> bool:
+	return get_setting(REPORT_ASSERT_STRICT_NUMBER_TYPE_COMPARE, true)
+
+static func is_report_push_errors() -> bool:
+	return get_setting(REPORT_PUSH_ERRORS, false)
+
+static func is_report_script_errors() -> bool:
+	return get_setting(REPORT_SCRIPT_ERRORS, true)
+
+static func is_inspector_node_collapse() -> bool:
+	return get_setting(INSPECTOR_NODE_COLLAPSE, true)
+
+static func is_log_enabled() -> bool:
+	return ProjectSettings.get_setting(STDOUT_ENABLE_TO_FILE)
 
 static func list_settings(category :String) -> Array:
 	var settings := Array()
