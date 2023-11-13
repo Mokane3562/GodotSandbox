@@ -1,3 +1,5 @@
 # GodotSandbox
 
-This project is for creating and sharing our experiments as we learn Godot
+**Requires Godot3**
+
+This project is a test/practice/sandbox
