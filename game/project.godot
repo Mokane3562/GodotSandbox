@@ -870,7 +870,7 @@ items_split_offset=379
 
 [mono]
 
-debugger_agent/wait_for_debugger=true
+project/assembly_name="Sandbox"
 
 [physics]
 
